@@ -1,0 +1,24 @@
+class Solution {
+    public double myPow(double x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n < 0) {
+            if (n == Integer.MIN_VALUE) {
+                return 1 / (x * myPow(x, -(n + 1)));
+            }
+            return 1 / myPow(x, -n);
+        }
+        double halfpower = myPow(x, n / 2);
+        double halfpowersq = halfpower * halfpower;
+        if (n % 2 != 0) {
+            halfpowersq = x * halfpowersq;
+        }
+        return halfpowersq;
+    }
+
+    public static void main(String[] args) {
+        Solution c = new Solution();
+        System.out.println(c.myPow(2.00000, 10));
+    }
+}
